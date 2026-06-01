@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
+/* Scandia — commercial font; loaded from local system or font files in /public/fonts/ */
+@font-face {
+  font-family: "Scandia";
+  font-weight: 400;
+  font-style: normal;
+  src: local("Scandia"), local("Scandia-Regular"), local("ScandiaRegular");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Scandia";
+  font-weight: 700;
+  font-style: normal;
+  src: local("Scandia Bold"), local("Scandia-Bold"), local("ScandiaBold");
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-body: "Scandia", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit), var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
 }

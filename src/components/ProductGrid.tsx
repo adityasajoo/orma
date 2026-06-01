@@ -1,44 +1,36 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-const products = [
+const landingProducts = [
   {
-    id: 1,
-    name: "Structured Bolero",
-    slug: "structured-bolero",
-    image: "/images/corset.png",
+    slug: 'double-collar-top',
+    image: '/images/corset.png',
+    name: 'Fragment Corset',
   },
   {
-    id: 2,
-    name: "Draped Jacket",
-    slug: "draped-jacket",
-    image: "/images/jacket.png",
+    slug: 'rorschach-cropped-jacket',
+    image: '/images/jacket.png',
+    name: 'Rorschach Cropped Jacket',
   },
-  {
-    id: 3,
-    name: "Asymmetric Skirt",
-    slug: "asymmetric-skirt",
-    image: "/images/skirt.png",
-  },
+  { slug: 'rift-skirt', image: '/images/skirt.png', name: 'Rift Skirt' },
 ];
 
 export default function ProductGrid() {
   return (
-    <section className="bg-white py-6 px-6">
-      <div className="grid grid-cols-3 gap-4">
-        {products.map((product) => (
+    <section className='bg-white py-6 px-6'>
+      <div className='grid grid-cols-3 gap-4'>
+        {landingProducts.map(product => (
           <Link
-            key={product.id}
+            key={product.slug}
             href={`/products/${product.slug}`}
-            className="group block"
-          >
-            <div className="relative aspect-[3/4] bg-[#f0f0f0] overflow-hidden">
+            className='group block'>
+            <div className='relative aspect-[3/4] bg-[#f0f0f0] overflow-hidden'>
               <Image
                 src={product.image}
                 alt={product.name}
                 fill
-                className="object-contain p-8 transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                className='object-contain p-8 transition-transform duration-500 group-hover:scale-105'
+                sizes='(max-width: 768px) 100vw, 33vw'
               />
             </div>
           </Link>

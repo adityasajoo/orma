@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { User, ShoppingBag, Search, X } from "lucide-react";
@@ -62,6 +62,18 @@ interface Props {
 export default function NavigationMenu({ isOpen, onClose }: Props) {
   const [activeItem, setActiveItem] = useState<NavItem>(navItems[0]);
 
+  // Prevent background scroll and scrollbar reflow when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
     <div
       className={`fixed inset-0 z-40 flex transition-opacity duration-500 ${
@@ -117,8 +129,8 @@ export default function NavigationMenu({ isOpen, onClose }: Props) {
 
         {/* Nav — vertically centered */}
         <div className="flex-1 flex items-center px-14">
-          <div className="flex gap-20">
-            {/* Column 1: primary nav — all bold always, opacity changes only → no jitter */}
+          <div className="flex gap-20 items-start">
+            {/* Column 1: primary nav */}
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <Link
@@ -137,8 +149,8 @@ export default function NavigationMenu({ isOpen, onClose }: Props) {
               ))}
             </nav>
 
-            {/* Column 2: sub-menu */}
-            <div className="flex flex-col gap-2 min-w-[180px]">
+            {/* Column 2: sub-menu — fixed min-height prevents layout shift when switching items */}
+            <div className="flex flex-col gap-2 min-w-[180px] min-h-[12rem]">
               {activeItem.subMenu && (
                 <>
                   <span className="block text-[1.65rem] font-bold tracking-[0.06em] leading-tight text-black">

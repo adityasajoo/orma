@@ -3,15 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Product } from "@/data/products";
 
-export interface Product {
-  id: number;
-  name: string;
-  price: string;
-  slug: string;
-  mainImage: string;
-  hoverImage: string;
-}
+export type { Product };
 
 export default function ProductCard({ product }: { product: Product }) {
   const [flipped, setFlipped] = useState(false);
@@ -33,7 +27,7 @@ export default function ProductCard({ product }: { product: Product }) {
               transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
             }}
           >
-            {/* Front — product flat shot */}
+            {/* Front — flat product shot */}
             <div
               className="absolute inset-0 bg-[#efefef] overflow-hidden"
               style={{ backfaceVisibility: "hidden" }}
@@ -45,7 +39,6 @@ export default function ProductCard({ product }: { product: Product }) {
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
-              {/* Arrow indicator */}
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg leading-none select-none">
                 ›
               </span>
@@ -74,11 +67,17 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         {/* Product info */}
-        <div
-          className="mt-3"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          <hr className="border-gray-300 mb-2" />
+        <div className="mt-3" style={{ fontFamily: "var(--font-body)" }}>
+          {/* Animated half-border: slides left→right as card flips */}
+          <div className="relative h-px bg-gray-100 mb-2 overflow-hidden">
+            <div
+              className="absolute top-0 h-full w-1/2 bg-gray-400"
+              style={{
+                left: flipped ? "50%" : "0%",
+                transition: "left 0.55s ease",
+              }}
+            />
+          </div>
           <p className="text-[13px] font-normal text-black tracking-wide">
             {product.name}
           </p>

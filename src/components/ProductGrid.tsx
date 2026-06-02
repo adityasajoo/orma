@@ -24,12 +24,12 @@ export default function ProductGrid() {
             key={product.slug}
             href={`/products/${product.slug}`}
             className='group block'>
-            <div className='relative aspect-[3/4] bg-[#f0f0f0] overflow-hidden'>
+            <div className='relative aspect-[3/4] overflow-hidden'>
               <Image
                 src={product.image}
                 alt={product.name}
                 fill
-                className='object-contain p-8 transition-transform duration-500 group-hover:scale-105 mix-blend-multiply'
+                className='object-cover object-top transition-transform duration-500 group-hover:scale-105'
                 sizes='(max-width: 768px) 100vw, 33vw'
               />
             </div>

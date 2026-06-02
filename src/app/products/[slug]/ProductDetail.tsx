@@ -53,42 +53,27 @@ export default function ProductDetail({ product }: { product: Product }) {
         className="flex"
         style={{ paddingTop: "68px", fontFamily: "var(--font-body)" }}
       >
-        {/* Left: stacked images — flat shot then editorial shot, scroll to reveal */}
+        {/* Left: stacked gallery images, scroll to reveal */}
         <div style={{ width: "58%", flexShrink: 0 }}>
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "calc(100vh - 68px)",
-              background: "#f0f0f0",
-            }}
-          >
-            <Image
-              src={product.mainImage}
-              alt={product.name}
-              fill
-              className="object-contain"
-              style={{ padding: "48px" }}
-              sizes="58vw"
-              priority
-            />
-          </div>
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "calc(100vh - 68px)",
-              background: "#e8e8e8",
-            }}
-          >
-            <Image
-              src={product.hoverImage}
-              alt={`${product.name} — on model`}
-              fill
-              className="object-cover object-top"
-              sizes="58vw"
-            />
-          </div>
+          {product.gallery.map((src, i) => (
+            <div
+              key={src}
+              style={{
+                position: "relative",
+                width: "100%",
+                height: "calc(100vh - 68px)",
+              }}
+            >
+              <Image
+                src={src}
+                alt={`${product.name} — view ${i + 1}`}
+                fill
+                className="object-cover"
+                sizes="58vw"
+                priority={i === 0}
+              />
+            </div>
+          ))}
         </div>
 
         {/* Right: sticky info panel */}

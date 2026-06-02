@@ -31,10 +31,10 @@ const navItems: NavItem[] = [
     subMenu: {
       heading: 'READY TO WEAR',
       links: [
-        { label: 'TOPS', href: '/ready-to-wear' },
-        { label: 'SKIRTS', href: '/ready-to-wear' },
-        { label: 'PANTS', href: '/ready-to-wear' },
-        { label: 'JACKETS', href: '/ready-to-wear' },
+        { label: 'TOPS', href: '/ready-to-wear/tops' },
+        { label: 'SKIRTS', href: '/ready-to-wear/skirts' },
+        { label: 'PANTS', href: '/ready-to-wear/pants' },
+        { label: 'JACKETS', href: '/ready-to-wear/jackets' },
       ],
     },
   },

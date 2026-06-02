@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, User, ShoppingBag, Search } from 'lucide-react';
 import NavigationMenu from './NavigationMenu';
 
@@ -28,14 +29,16 @@ export default function Navbar({ dark = false }: NavbarProps) {
           <Menu size={22} strokeWidth={1.2} />
         </button>
 
-        <Link
-          href='/'
-          className={`absolute left-1/2 -translate-x-1/2 text-center leading-none select-none ${iconColor}`}
-          style={{ fontFamily: 'var(--font-body)' }}>
-          <div className='text-xl font-bold tracking-[0.28em]'>OR&bull;MA</div>
-          <div className='text-[9px] tracking-[0.5em] font-normal mt-0.5'>
-            STUDIO
-          </div>
+        <Link href='/' className='absolute left-1/2 -translate-x-1/2'>
+          <Image
+            src='/images/latest/logo.png'
+            alt='OR•MA Studio'
+            width={90}
+            height={45}
+            className='mix-blend-multiply'
+            style={{ objectFit: 'contain' }}
+            priority
+          />
         </Link>
 
         <div className={`flex items-center gap-5 ${iconColor}`}>

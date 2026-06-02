@@ -29,7 +29,7 @@ export default async function CategoryPage({
 
       <main className='pt-[68px] pb-20'>
         {/* Collection banner */}
-        <div className='px-8 mb-12'>
+        <div className='px-8 mb-10'>
           <div className='relative w-full h-52 overflow-hidden'>
             <Image
               src='/images/Untitled-18.png'
@@ -44,7 +44,7 @@ export default async function CategoryPage({
         s{/* Section heading */}
         <p
           className='text-center text-[16px] tracking-[0.35em] text-black mb-10'
-          style={{ fontFamily: 'var(--font-body)' }}>
+          style={{ fontFamily: 'var(--font-body)', padding: '10px' }}>
           READY TO WEAR // {categoryLabels[cat]}
         </p>
         {/* Product grid */}

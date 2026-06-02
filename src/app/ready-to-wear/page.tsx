@@ -25,8 +25,8 @@ export default function ReadyToWearPage() {
 
         {/* Section heading */}
         <h1
-          className='text-center text-[11px] tracking-[0.35em] text-black mb-10'
-          style={{ fontFamily: 'var(--font-body)', fontWeight: 700 }}>
+          className='text-center text-[16px] tracking-[0.35em] text-black mb-10'
+          style={{ fontFamily: 'var(--font-body)', padding: '10px' }}>
           READY TO WEAR // ALL
         </h1>
 

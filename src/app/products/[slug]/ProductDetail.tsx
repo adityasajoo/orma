@@ -59,19 +59,22 @@ export default function ProductDetail({ product }: { product: Product }) {
             <div
               key={src}
               style={{
-                position: "relative",
                 width: "100%",
-                height: "calc(100vh - 68px)",
+                height: "80vh",
+                padding: "24px",
+                marginBottom: i < product.gallery.length - 1 ? "8px" : 0,
               }}
             >
-              <Image
-                src={src}
-                alt={`${product.name} — view ${i + 1}`}
-                fill
-                className="object-cover"
-                sizes="58vw"
-                priority={i === 0}
-              />
+              <div style={{ position: "relative", width: "100%", height: "100%" }}>
+                <Image
+                  src={src}
+                  alt={`${product.name} — view ${i + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="58vw"
+                  priority={i === 0}
+                />
+              </div>
             </div>
           ))}
         </div>

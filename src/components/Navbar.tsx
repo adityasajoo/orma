@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Menu, User, ShoppingBag, Search } from 'lucide-react';
 import NavigationMenu from './NavigationMenu';

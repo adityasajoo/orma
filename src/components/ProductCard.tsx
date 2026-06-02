@@ -36,7 +36,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 src={product.mainImage}
                 alt={product.name}
                 fill
-                className="object-contain"
+                className="object-contain mix-blend-multiply"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg leading-none select-none">

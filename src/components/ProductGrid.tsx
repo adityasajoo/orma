@@ -4,15 +4,15 @@ import Link from 'next/link';
 const landingProducts = [
   {
     slug: 'double-collar-top',
-    image: '/images/corset.png',
+    image: '/images/new-scaled/corset.webp',
     name: 'Fragment Corset',
   },
   {
     slug: 'rorschach-cropped-jacket',
-    image: '/images/jacket.png',
+    image: '/images/new-scaled/jacket.webp',
     name: 'Rorschach Cropped Jacket',
   },
-  { slug: 'rift-skirt', image: '/images/skirt.png', name: 'Rift Skirt' },
+  { slug: 'rift-skirt', image: '/images/new-scaled/skirt.webp', name: 'Rift Skirt' },
 ];
 
 export default function ProductGrid() {
@@ -29,7 +29,7 @@ export default function ProductGrid() {
                 src={product.image}
                 alt={product.name}
                 fill
-                className='object-contain p-8 transition-transform duration-500 group-hover:scale-105'
+                className='object-contain p-8 transition-transform duration-500 group-hover:scale-105 mix-blend-multiply'
                 sizes='(max-width: 768px) 100vw, 33vw'
               />
             </div>

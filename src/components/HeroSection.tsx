@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section className='relative w-full h-screen overflow-hidden'>
       <Image
-        src='/images/5824c5a2-c7aa-49f8-a7b2-cb3d08e48258.png'
+        src='/images/new-scaled/pant2.webp'
         alt='OR•MA Studio — Collection 01: Residue 2026'
         fill
         className='object-cover object-center'

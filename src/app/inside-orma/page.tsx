@@ -47,7 +47,7 @@ export default function InsideOrmaPage() {
           <div className='flex gap-18 flex-1'>
             <div className='relative flex-1 h-[500px] overflow-hidden'>
               <Image
-                src='/images/latest/WhatsApp Image 2026-06-02 at 18.21.43.jpeg'
+                src='/images-final/inside orma/WhatsApp Image 2026-06-02 at 18.21.43.jpeg'
                 alt='Behind the scenes — studio'
                 fill
                 className='object-cover object-center grayscale'
@@ -56,7 +56,7 @@ export default function InsideOrmaPage() {
             </div>
             <div className='relative flex-1 h-[500px] overflow-hidden'>
               <Image
-                src='/images/latest/WhatsApp Image 2026-06-02 at 18.22.10.jpeg'
+                src='/images-final/inside orma/WhatsApp Image 2026-06-02 at 18.22.10.jpeg'
                 alt='Behind the scenes — garment detail'
                 fill
                 className='object-cover object-center grayscale'
@@ -65,7 +65,7 @@ export default function InsideOrmaPage() {
             </div>
             <div className='relative flex-1 h-[500px] overflow-hidden'>
               <Image
-                src='/images/latest/WhatsApp Image 2026-06-02 at 18.22.33.jpeg'
+                src='/images-final/inside orma/WhatsApp Image 2026-06-02 at 18.22.33.jpeg'
                 alt='Behind the scenes — sculptural piece'
                 fill
                 className='object-cover object-center grayscale'

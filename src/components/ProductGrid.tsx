@@ -3,16 +3,22 @@ import Link from 'next/link';
 
 const landingProducts = [
   {
-    slug: 'double-collar-top',
-    image: '/images/new-scaled/corset.webp',
+    slug: 'fragment-corset',
+    image: '/images-final/fragment corset/yu.jpg',
     name: 'Fragment Corset',
   },
   {
     slug: 'rorschach-cropped-jacket',
-    image: '/images/new-scaled/jacket.webp',
+    image:
+      '/images-final/rorschach cropped jacket/b02d49ee-d6f1-4f33-a29a-4fb85e0450ba Firefly Upscaler 4x scale.jpg',
     name: 'Rorschach Cropped Jacket',
   },
-  { slug: 'rift-skirt', image: '/images/new-scaled/skirt.webp', name: 'Rift Skirt' },
+  {
+    slug: 'rift-skirt',
+    image:
+      '/images-final/rift skirt/c79f388b-ad4a-497d-9ded-789c5ae61716 Firefly Upscaler 4x scale.jpg',
+    name: 'Rift Skirt',
+  },
 ];
 
 export default function ProductGrid() {

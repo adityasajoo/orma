@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, User, ShoppingBag, Search } from 'lucide-react';
 import NavigationMenu from './NavigationMenu';
+import SearchOverlay from './SearchOverlay';
 
 interface NavbarProps {
   dark?: boolean;
@@ -13,14 +13,15 @@ interface NavbarProps {
 
 export default function Navbar({ dark = false }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const iconColor = dark ? 'text-black' : 'text-white';
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-10 px-8 py-5 transition-opacity duration-300 ${
-          isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-10 pt-8 px-8 py-5 transition-opacity duration-300 ${
+          isMenuOpen || isSearchOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}>
         <button
           aria-label='Open menu'
@@ -29,7 +30,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
           <Menu size={22} strokeWidth={1.2} />
         </button>
 
-        <Link href='/' className='absolute left-1/2 -translate-x-1/2'>
+        <Link href='/' className='absolute left-1/2 -translate-x-1/2 '>
           <Image
             src='/images/latest/logo.png'
             alt='OR•MA Studio'
@@ -54,6 +55,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
           </button>
           <button
             aria-label='Search'
+            onClick={() => setIsSearchOpen(true)}
             className='hover:opacity-50 transition-opacity'>
             <Search size={20} strokeWidth={1.2} />
           </button>
@@ -63,6 +65,10 @@ export default function Navbar({ dark = false }: NavbarProps) {
       <NavigationMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
+      />
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
       />
     </>
   );

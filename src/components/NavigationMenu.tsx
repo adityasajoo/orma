@@ -27,7 +27,7 @@ const navItems: NavItem[] = [
     label: 'WOMEN',
     href: '/ready-to-wear',
     image:
-      '/images/new-scaled/0a47c57d-3c01-4b8d-923a-203df4bcc94f_2026-06-02_12_46_17.240638.webp',
+      '/images-final/menu/0a47c57d-3c01-4b8d-923a-203df4bcc94f Firefly Upscaler 4x scale.jpg',
     subMenu: {
       heading: 'READY TO WEAR',
       links: [
@@ -42,7 +42,7 @@ const navItems: NavItem[] = [
     label: 'COLLECTIONS',
     href: '/collections',
     image:
-      '/images/new-scaled/jacket2.webp',
+      '/images-final/menu/991cb148-9f70-4c6c-b0a8-2fa966b6aeec (1) Firefly Upscaler 4x scale.jpg',
     subMenu: {
       heading: 'RESIDUE // 2026',
       links: [],
@@ -52,7 +52,7 @@ const navItems: NavItem[] = [
     label: 'INSIDE ORMA',
     href: '/inside-orma',
     image:
-      '/images/new-scaled/0d046df7-d859-48fb-8da4-3e46ed6a015f_2026-06-02_12_46_18.777011.webp',
+      '/images-final/menu/13122235-76d4-4597-971c-53083b7cf8c1 Firefly Upscaler 4x scale.jpg',
     subMenu: null,
   },
 ];

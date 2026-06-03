@@ -11,28 +11,28 @@ const SIZES = ["XS", "S", "M", "L", "XL"];
 const PRODUCT_DETAILS: Record<string, { description: string; composition: string }> = {
   "double-collar-top": {
     description:
-      "A structured double-collar top from the Residue 2026 collection. Cut close to the body with architectural seaming that references geological stratification.",
-    composition: "80% Virgin Wool, 16% Silk, 4% Elastane. Dry clean only. Made in India.",
+      "Double collar top designed with two layered collars: one high collar and one convertible collar. The piece features a screwable front closure and subtle pattern detailing placed only along the seams, creating a clean, structured surface with quiet tension.",
+    composition: "70% Polyester, 30% Wool. Dry clean only. Made in India.",
   },
   "flared-pant": {
     description:
-      "Wide-leg trousers with a dramatic flared silhouette. The structured waistband contrasts with the fluid drape of the hem, creating a sense of suspended motion.",
-    composition: "72% Viscose, 24% Linen, 4% Elastane. Dry clean only. Made in India.",
+      "Layered flared pants featuring two waistbands, one high and one regular, to create a strong sculpted waist. Finished with handmade buttons and hand-painted splashed lining beneath the layers, the piece combines structure with movement.",
+    composition: "80% Polyester, 20% Wool. Dry clean only. Made in India.",
   },
   "rift-skirt": {
     description:
-      "An asymmetric layered skirt with cascading panels that form a fractured hemline. Each panel is precision-cut to create a controlled sense of dissolution.",
-    composition: "68% Cotton, 28% Polyamide, 4% Elastane. Dry clean only. Made in India.",
+      "Multilayered asymmetrical skirt with a structured yet fluid silhouette. The hand-painted lining sits beneath the layers, adding depth and movement while keeping the piece sharp, textured, and quietly dramatic.",
+    composition: "70% Polyester, 30% Wool. Dry clean only. Made in India.",
   },
   "rorschach-cropped-jacket": {
     description:
-      "A cropped jacket with deliberately mirrored seaming inspired by Rorschach inkblot patterns. The structured shoulder and raw-edge finish create tension between order and entropy.",
-    composition: "85% Wool, 12% Silk, 3% Elastane. Dry clean only. Made in India.",
+      "Cropped structured jacket with a layered silhouette and digital Rorschach print across the surface. The piece is sharply constructed, holding its form while creating a sense of distortion, depth, and controlled chaos.",
+    composition: "100% Cotton. Dry clean only. Made in India.",
   },
   "fragment-corset": {
     description:
-      "A boned corset with fragmented patchwork panels that reference shattered material. Each panel is individually seamed, making every piece unique.",
-    composition: "60% Leather, 30% Cotton, 10% Nylon lining. Professional clean only. Made in India.",
+      "Sculpted 20-panel corset with intricate beadwork and delicate stocking-based detailing. The piece is highly crafted and intimate, balancing rigid construction with fragile surface work and hand-finished texture.",
+    composition: "70% Polyester, 30% Wool. Dry clean only. Made in India.",
   },
 };
 

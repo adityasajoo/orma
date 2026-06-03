@@ -45,7 +45,7 @@ export default function CollectionsPage() {
                 'linear-gradient(to right, transparent 0%, black 18%, black 100%)',
             }}>
             <Image
-              src='/images/latest/Untitled-20.png'
+              src='/images-final/collection/Untitled-20.png'
               alt='Residue 2026 — collection collage'
               fill
               className='object-contain object-center'
@@ -59,7 +59,7 @@ export default function CollectionsPage() {
         <section className='px-12 pb-0'>
           <div className='relative w-full h-[580px] overflow-hidden'>
             <Image
-              src='/images/latest/bba4214b-e6bd-4013-9d30-ac7e8545f2ed.png'
+              src='/images-final/collection/bba4214b-e6bd-4013-9d30-ac7e8545f2ed.png'
               alt='Residue 2026 — editorial'
               fill
               className='object-cover object-top'

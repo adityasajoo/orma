@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section className='relative w-full h-screen overflow-hidden'>
       <Image
-        src='/images/latest/landing.png'
+        src='/images-final/landing.jpg'
         alt='OR•MA Studio — Collection 01: Residue 2026'
         fill
         className='object-cover object-center'
@@ -33,7 +33,7 @@ export default function HeroSection() {
           RESIDUE // 2026
         </h1>
         <Link
-          href='/collection'
+          href='/ready-to-wear'
           className='text-[10px] tracking-[0.35em] opacity-90 border-b border-white/60 pb-0.5 hover:opacity-60 transition-opacity'
           style={{
             fontFamily: 'var(--font-outfit), sans-serif',

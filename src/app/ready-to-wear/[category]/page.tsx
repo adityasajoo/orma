@@ -48,7 +48,7 @@ export default async function CategoryPage({
           READY TO WEAR // {categoryLabels[cat]}
         </p>
         {/* Product grid */}
-        <div className='px-8 grid grid-cols-3 gap-x-5 gap-y-12'>
+        <div className='px-4 md:px-8 grid grid-cols-2 md:grid-cols-3 gap-x-3 md:gap-x-5 gap-y-8 md:gap-y-12'>
           {filtered.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}

@@ -24,24 +24,48 @@ const landingProducts = [
 export default function ProductGrid() {
   return (
     <section className='bg-white py-6 px-6'>
-      <div className='grid grid-cols-3 gap-4'>
+      {/* Desktop: 3-column. Mobile: 2-up top, 1 centered bottom */}
+      <div className='hidden md:grid md:grid-cols-3 gap-4'>
         {landingProducts.map(product => (
-          <Link
-            key={product.slug}
-            href={`/products/${product.slug}`}
-            className='group block'>
-            <div className='relative aspect-[3/4] overflow-hidden'>
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className='object-cover object-top transition-transform duration-500 group-hover:scale-105'
-                sizes='(max-width: 768px) 100vw, 33vw'
-              />
-            </div>
-          </Link>
+          <ProductLink key={product.slug} product={product} sizes='33vw' />
         ))}
       </div>
+
+      <div className='md:hidden flex flex-col gap-4'>
+        {/* Row 1: two side by side */}
+        <div className='grid grid-cols-2 gap-4'>
+          <ProductLink product={landingProducts[0]} sizes='50vw' />
+          <ProductLink product={landingProducts[1]} sizes='50vw' />
+        </div>
+        {/* Row 2: single centered at ~60% width */}
+        <div className='flex justify-center'>
+          <div className='w-[60%]'>
+            <ProductLink product={landingProducts[2]} sizes='60vw' />
+          </div>
+        </div>
+      </div>
     </section>
+  );
+}
+
+function ProductLink({
+  product,
+  sizes,
+}: {
+  product: (typeof landingProducts)[number];
+  sizes: string;
+}) {
+  return (
+    <Link href={`/products/${product.slug}`} className='group block'>
+      <div className='relative aspect-3/4 overflow-hidden'>
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          className='object-cover object-top transition-transform duration-500 group-hover:scale-105'
+          sizes={sizes}
+        />
+      </div>
+    </Link>
   );
 }

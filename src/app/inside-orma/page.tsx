@@ -8,7 +8,7 @@ export default function InsideOrmaPage() {
 
       <main className='bg-white' style={{ fontFamily: 'var(--font-body)' }}>
         {/* Centered brand statement */}
-        <section className='flex flex-col items-center justify-center px-8 pt-40 pb-24 text-center'>
+        <section className='flex flex-col items-center justify-center px-6 pt-32 md:pt-40 pb-16 md:pb-24 text-center'>
           <p
             className='text-[13.5px] leading-[1.75] text-black/50 max-w-[340px] mb-7'
             style={{ fontWeight: 400 }}>
@@ -31,8 +31,8 @@ export default function InsideOrmaPage() {
         </section>
 
         {/* Behind the Scenes */}
-        <section className='px-16 pb-20'>
-          <div className='flex flex-col justify-start pt-1 min-w-[80px] '>
+        <section className='px-6 md:px-16 pb-16 md:pb-20'>
+          <div className='flex flex-col justify-start pt-1 min-w-[80px]'>
             <span className='text-[14px] tracking-[0.35em] font-medium text-black leading-[1.5] pb-6'>
               BEHIND
               <br />
@@ -41,35 +41,34 @@ export default function InsideOrmaPage() {
               SCENES
             </span>
           </div>
-          {/* Label */}
 
-          {/* Three images */}
-          <div className='flex gap-18 flex-1'>
-            <div className='relative flex-1 h-[500px] overflow-hidden'>
+          {/* Three images — stacked on mobile, row on desktop */}
+          <div className='flex flex-col md:flex-row gap-4 md:gap-18 flex-1'>
+            <div className='relative w-full md:flex-1 h-[80vw] md:h-[500px] overflow-hidden'>
               <Image
                 src='/images-final/inside orma/WhatsApp Image 2026-06-02 at 18.21.43.jpeg'
                 alt='Behind the scenes — studio'
                 fill
                 className='object-cover object-center grayscale'
-                sizes='30vw'
+                sizes='(max-width: 768px) 100vw, 30vw'
               />
             </div>
-            <div className='relative flex-1 h-[500px] overflow-hidden'>
+            <div className='relative w-full md:flex-1 h-[80vw] md:h-[500px] overflow-hidden'>
               <Image
                 src='/images-final/inside orma/WhatsApp Image 2026-06-02 at 18.22.10.jpeg'
                 alt='Behind the scenes — garment detail'
                 fill
                 className='object-cover object-center grayscale'
-                sizes='30vw'
+                sizes='(max-width: 768px) 100vw, 30vw'
               />
             </div>
-            <div className='relative flex-1 h-[500px] overflow-hidden'>
+            <div className='relative w-full md:flex-1 h-[80vw] md:h-[500px] overflow-hidden'>
               <Image
                 src='/images-final/inside orma/WhatsApp Image 2026-06-02 at 18.22.33.jpeg'
                 alt='Behind the scenes — sculptural piece'
                 fill
                 className='object-cover object-center grayscale'
-                sizes='30vw'
+                sizes='(max-width: 768px) 100vw, 30vw'
               />
             </div>
           </div>

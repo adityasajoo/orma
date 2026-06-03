@@ -37,7 +37,6 @@ export default function Navbar({ dark = false }: NavbarProps) {
             width={90}
             height={45}
             className='mix-blend-multiply'
-            style={{ objectFit: 'contain' }}
             priority
           />
         </Link>

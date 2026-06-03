@@ -7,10 +7,10 @@ export default function CollectionsPage() {
       <Navbar dark />
 
       <main className='bg-white'>
-        {/* Hero: text left + collage right */}
-        <section className='flex min-h-[680px] pt-20 px-32'>
+        {/* Hero: stacked on mobile, side-by-side on desktop */}
+        <section className='flex flex-col md:flex-row min-h-[auto] md:min-h-[680px] pt-20 px-6 md:px-32'>
           {/* Left — text */}
-          <div className='w-[35%] flex flex-col justify-center pr-10'>
+          <div className='w-full md:w-[35%] flex flex-col justify-center md:pr-10 pb-8 md:pb-0'>
             <h1
               className='text-[1.35rem] font-bold tracking-[0.06em] mb-2'
               style={{ fontFamily: 'var(--font-body)' }}>
@@ -24,7 +24,7 @@ export default function CollectionsPage() {
               quiet traces left behind by guilt, tension, and self-reflection,
               turning them into structured silhouettes, layered surfaces, and
               distorted prints.
-            </p>{' '}
+            </p>
             <br></br>
             <p
               className='text-[15px] leading-[1.65] text-black/50'
@@ -37,7 +37,7 @@ export default function CollectionsPage() {
 
           {/* Right — collage image */}
           <div
-            className='w-[65%] relative'
+            className='w-full md:w-[65%] relative h-[60vw] md:h-auto'
             style={{
               WebkitMaskImage:
                 'linear-gradient(to right, transparent 0%, black 18%, black 100%)',
@@ -49,15 +49,15 @@ export default function CollectionsPage() {
               alt='Residue 2026 — collection collage'
               fill
               className='object-contain object-center'
-              sizes='70vw'
+              sizes='(max-width: 768px) 100vw, 70vw'
               priority
             />
           </div>
         </section>
 
         {/* Full-width editorial photo */}
-        <section className='px-12 pb-0'>
-          <div className='relative w-full h-[580px] overflow-hidden'>
+        <section className='px-4 md:px-12 pb-0'>
+          <div className='relative w-full h-[55vw] md:h-[580px] overflow-hidden'>
             <Image
               src='/images-final/collection/bba4214b-e6bd-4013-9d30-ac7e8545f2ed.png'
               alt='Residue 2026 — editorial'
@@ -70,17 +70,17 @@ export default function CollectionsPage() {
 
         {/* Bottom tag strip */}
         <section
-          className='flex items-center justify-between px-8 py-5 border-t border-gray-100'
+          className='flex items-center justify-between px-4 md:px-8 py-5 border-t border-gray-100'
           style={{ fontFamily: 'var(--font-body)' }}>
-          <span className='text-[16px] tracking-[0.3em] font-bold text-black'>
+          <span className='text-[12px] md:text-[16px] tracking-[0.2em] md:tracking-[0.3em] font-bold text-black'>
             TAILORED
           </span>
           <span className='text-black text-lg leading-none'>•</span>
-          <span className='text-[16px] tracking-[0.3em] font-bold text-black'>
+          <span className='text-[12px] md:text-[16px] tracking-[0.2em] md:tracking-[0.3em] font-bold text-black'>
             DISTORTED
           </span>
           <span className='text-black text-lg leading-none'>•</span>
-          <span className='text-[16px] tracking-[0.3em] font-bold text-black'>
+          <span className='text-[12px] md:text-[16px] tracking-[0.2em] md:tracking-[0.3em] font-bold text-black'>
             LAYERED
           </span>
         </section>

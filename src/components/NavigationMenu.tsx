@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { User, ShoppingBag, Search, X } from 'lucide-react';
+import { User, ShoppingBag, Search, X, ChevronDown } from 'lucide-react';
 
 interface SubLink {
   label: string;
@@ -64,14 +64,10 @@ interface Props {
 
 export default function NavigationMenu({ isOpen, onClose }: Props) {
   const [activeItem, setActiveItem] = useState<NavItem>(navItems[0]);
+  const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
 
-  // Prevent background scroll and scrollbar reflow when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
@@ -92,8 +88,8 @@ export default function NavigationMenu({ isOpen, onClose }: Props) {
         <X size={22} strokeWidth={1.2} />
       </button>
 
-      {/* Left: editorial image */}
-      <div className='relative w-[44%] h-full overflow-hidden bg-neutral-900'>
+      {/* Left: editorial image — desktop only */}
+      <div className='hidden md:block relative w-[44%] h-full overflow-hidden bg-neutral-900'>
         {navItems.map(item => (
           <Image
             key={item.label}
@@ -110,10 +106,10 @@ export default function NavigationMenu({ isOpen, onClose }: Props) {
 
       {/* Right: menu panel */}
       <div
-        className='w-[56%] h-full bg-white flex flex-col'
+        className='w-full md:w-[56%] h-full bg-white flex flex-col'
         style={{ fontFamily: 'var(--font-body)' }}>
         {/* Top bar */}
-        <div className='flex items-center justify-between px-12 py-[22px] border-b border-gray-100'>
+        <div className='flex items-center justify-between px-8 md:px-12 py-[22px] border-b border-gray-100'>
           <span className='text-[11px] tracking-[0.06em] text-gray-500'>
             Shipping to : <span className='font-bold text-black'>India</span>
             <span className='mx-2 text-gray-300'>·</span>EN
@@ -137,9 +133,10 @@ export default function NavigationMenu({ isOpen, onClose }: Props) {
           </div>
         </div>
 
-        {/* Nav — vertically centered */}
-        <div className='flex-1 flex items-center px-14'>
-          <div className='flex gap-20 items-start'>
+        {/* Nav — desktop: two-column hover layout / mobile: accordion */}
+        <div className='flex-1 overflow-y-auto px-8 md:px-14 py-8 md:py-0 md:flex md:items-center'>
+          {/* ── Desktop layout ── */}
+          <div className='hidden md:flex gap-20 items-start'>
             {/* Column 1: primary nav */}
             <nav className='flex flex-col gap-2'>
               {navItems.map(item => (
@@ -158,7 +155,7 @@ export default function NavigationMenu({ isOpen, onClose }: Props) {
               ))}
             </nav>
 
-            {/* Column 2: sub-menu — fixed min-height prevents layout shift when switching items */}
+            {/* Column 2: sub-menu */}
             <div className='flex flex-col gap-2 min-w-[180px] min-h-[12rem]'>
               {activeItem.subMenu && (
                 <>
@@ -181,10 +178,70 @@ export default function NavigationMenu({ isOpen, onClose }: Props) {
               )}
             </div>
           </div>
+
+          {/* ── Mobile layout: accordion ── */}
+          <nav className='md:hidden flex flex-col w-full'>
+            {navItems.map(item => {
+              const isExpanded = expandedMobile === item.label;
+              const hasSubMenu =
+                item.subMenu &&
+                (item.subMenu.links.length > 0 || item.subMenu.heading);
+
+              return (
+                <div key={item.label} className='border-b border-gray-100'>
+                  <div className='flex items-center justify-between py-4'>
+                    <Link
+                      href={item.href}
+                      onClick={onClose}
+                      className='text-[1.5rem] font-bold tracking-[0.06em] text-black'>
+                      {item.label}
+                    </Link>
+                    {hasSubMenu && (
+                      <button
+                        aria-label={`Toggle ${item.label} sub-menu`}
+                        onClick={() =>
+                          setExpandedMobile(isExpanded ? null : item.label)
+                        }
+                        className='p-2 text-black transition-transform duration-200'
+                        style={{
+                          transform: isExpanded
+                            ? 'rotate(180deg)'
+                            : 'rotate(0deg)',
+                        }}>
+                        <ChevronDown size={18} strokeWidth={1.5} />
+                      </button>
+                    )}
+                  </div>
+
+                  {hasSubMenu && isExpanded && item.subMenu && (
+                    <div className='pb-4 pl-4 flex flex-col gap-3'>
+                      {item.subMenu.heading && (
+                        <Link
+                          href={item.href}
+                          onClick={onClose}
+                          className='text-[1.1rem] font-bold tracking-[0.05em] text-black/60'>
+                          {item.subMenu.heading}
+                        </Link>
+                      )}
+                      {item.subMenu.links.map(link => (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          onClick={onClose}
+                          className='text-[1rem] font-bold tracking-[0.04em] text-black/40'>
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
         </div>
 
         {/* Bottom bar */}
-        <div className='flex justify-between px-14 py-6 border-t border-gray-100'>
+        <div className='flex justify-between px-8 md:px-14 py-6 border-t border-gray-100'>
           <Link
             href='/support'
             onClick={onClose}

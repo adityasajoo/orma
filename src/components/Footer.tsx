@@ -33,59 +33,20 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer
-      style={{
-        background: '#0d0d0d',
-        color: '#fff',
-        fontFamily: 'var(--font-body)',
-      }}>
-      {/* Main grid */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr 1fr',
-          gap: '40px',
-          padding: '60px 48px 48px',
-          borderBottom: '1px solid #2a2a2a',
-        }}>
+    <footer className='bg-[#0d0d0d] text-white' style={{ fontFamily: 'var(--font-body)' }}>
+      {/* Main grid — 2 cols on mobile, 4 on desktop */}
+      <div className='grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 px-6 md:px-12 pt-12 md:pt-16 pb-10 md:pb-12 border-b border-[#2a2a2a]'>
         {columns.map(col => (
           <div key={col.heading}>
-            <p
-              style={{
-                fontSize: '13px',
-                fontWeight: 500,
-                marginBottom: '24px',
-                color: '#fff',
-              }}>
+            <p className='text-[13px] font-medium text-white mb-5 md:mb-6'>
               {col.heading}
             </p>
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px',
-              }}>
+            <ul className='flex flex-col gap-3 md:gap-[14px] list-none p-0 m-0'>
               {col.links.map(link => (
                 <li key={link}>
                   <button
                     onClick={e => e.preventDefault()}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      padding: 0,
-                      cursor: 'pointer',
-                      fontSize: '12px',
-                      color: '#9a9a9a',
-                      textAlign: 'left',
-                      transition: 'color 0.2s',
-                    }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                    onMouseLeave={e =>
-                      (e.currentTarget.style.color = '#9a9a9a')
-                    }>
+                    className='bg-transparent border-none p-0 cursor-pointer text-[12px] text-[#9a9a9a] text-left transition-colors duration-200 hover:text-white'>
                     {link}
                   </button>
                 </li>
@@ -95,57 +56,32 @@ export default function Footer() {
         ))}
 
         {/* Subscribe + Shipping column */}
-        <div>
+        <div className='col-span-2 md:col-span-1'>
           <button
             onClick={e => e.preventDefault()}
-            style={{
-              background: 'none',
-              border: 'none',
-              padding: 0,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              fontSize: '13px',
-              fontWeight: 500,
-              color: '#fff',
-              marginBottom: '32px',
-              transition: 'opacity 0.2s',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
-            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
+            className='bg-transparent border-none p-0 cursor-pointer flex items-center gap-2.5 text-[13px] font-medium text-white mb-8 transition-opacity duration-200 hover:opacity-60'>
             Subscribe to the Newsletter
-            <span style={{ fontSize: '16px' }}>→</span>
+            <span className='text-base'>→</span>
           </button>
 
-          <p
-            style={{ fontSize: '12px', color: '#9a9a9a', marginBottom: '8px' }}>
-            Shipping to:
-          </p>
-          <p style={{ fontSize: '12px', color: '#fff' }}>India</p>
+          <p className='text-[12px] text-[#9a9a9a] mb-2'>Shipping to:</p>
+          <p className='text-[12px] text-white'>India</p>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '24px 48px',
-        }}>
+      <div className='flex items-center justify-between px-6 md:px-12 py-6'>
         <Image
           src='/images/latest/logo.png'
           alt='OR•MA Studio'
           width={80}
           height={40}
-          style={{ objectFit: 'contain' }}
           className='invert'
         />
-        <p style={{ fontSize: '11px', color: '#5a5a5a' }}>
+        <p className='text-[11px] text-[#5a5a5a] text-center'>
           © 2026 OR•MA Studio. All rights reserved.
         </p>
-        <div style={{ width: '80px' }} />
+        <div className='w-[80px]' />
       </div>
     </footer>
   );

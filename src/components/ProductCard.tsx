@@ -15,9 +15,18 @@ export default function ProductCard({ product }: { product: Product }) {
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
     >
-      <Link href={`/products/${product.slug}`}>
+      <Link
+        href={`/products/${product.slug}`}
+        onClick={(e) => {
+          // On touch devices, first tap flips — second tap navigates
+          if (!flipped && window.matchMedia("(hover: none)").matches) {
+            e.preventDefault();
+            setFlipped(true);
+          }
+        }}
+      >
         {/* Flip container */}
-        <div className="relative aspect-[3/4]" style={{ perspective: "1000px" }}>
+        <div className="relative aspect-3/4" style={{ perspective: "1000px" }}>
           {/* Rotating inner */}
           <div
             className="absolute inset-0"
@@ -37,7 +46,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 alt={product.name}
                 fill
                 className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 50vw, 33vw"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg leading-none select-none">
                 ›
@@ -57,7 +66,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 alt={product.name}
                 fill
                 className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 50vw, 33vw"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white text-lg leading-none select-none">
                 ›

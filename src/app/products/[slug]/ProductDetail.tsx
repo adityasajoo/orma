@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -43,51 +43,105 @@ const DEFAULT_DETAIL = {
 
 export default function ProductDetail({ product }: { product: Product }) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const detail = PRODUCT_DETAILS[product.slug] ?? DEFAULT_DETAIL;
+
+  function handleCarouselScroll() {
+    const el = carouselRef.current;
+    if (!el) return;
+    setActiveSlide(Math.round(el.scrollLeft / el.clientWidth));
+  }
 
   return (
     <>
       <Navbar dark />
 
+      {/* Mobile: stacked. Desktop: side-by-side */}
       <div
-        className="flex"
+        className="flex flex-col md:flex-row"
         style={{ paddingTop: "68px", fontFamily: "var(--font-body)" }}
       >
-        {/* Left: stacked gallery images, scroll to reveal */}
-        <div style={{ width: "58%", flexShrink: 0 }}>
-          {product.gallery.map((src, i) => (
+        {/* Gallery */}
+        <div className="w-full md:w-[58%] md:shrink-0">
+
+          {/* Mobile: swipeable carousel */}
+          <div className="md:hidden">
             <div
-              key={src}
-              style={{
-                width: "100%",
-                height: "80vh",
-                padding: "24px",
-                marginBottom: i < product.gallery.length - 1 ? "8px" : 0,
-              }}
+              ref={carouselRef}
+              onScroll={handleCarouselScroll}
+              className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hide"
             >
-              <div style={{ position: "relative", width: "100%", height: "100%" }}>
-                <Image
-                  src={src}
-                  alt={`${product.name} — view ${i + 1}`}
-                  fill
-                  className="object-contain"
-                  sizes="58vw"
-                  priority={i === 0}
-                />
-              </div>
+              {product.gallery.map((src, i) => (
+                <div
+                  key={src}
+                  className="snap-center shrink-0 w-full relative h-[90vw]"
+                >
+                  <Image
+                    src={src}
+                    alt={`${product.name} — view ${i + 1}`}
+                    fill
+                    className="object-contain"
+                    sizes="100vw"
+                    priority={i === 0}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* Dot indicators */}
+            {product.gallery.length > 1 && (
+              <div className="flex justify-center gap-1.5 py-4">
+                {product.gallery.map((_, i) => (
+                  <button
+                    key={i}
+                    aria-label={`Go to image ${i + 1}`}
+                    onClick={() => {
+                      carouselRef.current?.scrollTo({
+                        left: i * (carouselRef.current.clientWidth),
+                        behavior: "smooth",
+                      });
+                    }}
+                    className={`rounded-full transition-all duration-300 ${
+                      activeSlide === i
+                        ? "w-4 h-1.5 bg-black"
+                        : "w-1.5 h-1.5 bg-gray-300"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Desktop: vertical stack */}
+          <div className="hidden md:block">
+            {product.gallery.map((src, i) => (
+              <div
+                key={src}
+                className={`w-full p-6 ${i < product.gallery.length - 1 ? "mb-2" : ""}`}
+              >
+                <div className="relative w-full h-[80vh]">
+                  <Image
+                    src={src}
+                    alt={`${product.name} — view ${i + 1}`}
+                    fill
+                    className="object-contain"
+                    sizes="58vw"
+                    priority={i === 0}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Right: sticky info panel */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+        {/* Info panel */}
+        <div className="w-full md:flex-1 md:min-w-0">
           <div
+            className="px-6 py-8 md:px-12 md:py-12 md:sticky md:top-[68px]"
             style={{
-              position: "sticky",
-              top: "68px",
-              height: "calc(100vh - 68px)",
+              maxHeight: "calc(100vh - 68px)",
               overflowY: "auto",
-              padding: "48px",
             }}
           >
             {/* Back link */}
@@ -99,7 +153,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                 letterSpacing: "0.3em",
                 color: "#9ca3af",
                 textDecoration: "none",
-                marginBottom: "40px",
+                marginBottom: "32px",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#000")}
@@ -123,7 +177,7 @@ export default function ProductDetail({ product }: { product: Product }) {
             {/* Product name */}
             <h1
               style={{
-                fontSize: "1.6rem",
+                fontSize: "1.4rem",
                 fontWeight: 700,
                 letterSpacing: "0.06em",
                 color: "#000",
@@ -163,6 +217,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                 display: "flex",
                 gap: "8px",
                 marginBottom: "32px",
+                flexWrap: "wrap",
               }}
             >
               {SIZES.map((size) => (

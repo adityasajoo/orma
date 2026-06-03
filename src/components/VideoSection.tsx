@@ -37,13 +37,14 @@ export default function VideoSection() {
         muted
         playsInline
         className='absolute inset-0 w-full h-full object-cover'
+        suppressHydrationWarning
       />
 
       {/* dark overlay */}
       <div className='absolute inset-0 bg-black/20 pointer-events-none' />
 
       {/* collection overlay */}
-      <div className='absolute bottom-14 left-1/2 -translate-x-1/2 text-center text-white whitespace-nowrap z-10'>
+      <div className='absolute bottom-14 left-1/2 -translate-x-1/2 text-center text-white px-6 z-10'>
         <p
           className='text-[10px] tracking-[0.4em] mb-3 opacity-90'
           style={{
@@ -53,7 +54,7 @@ export default function VideoSection() {
           COLLECTION 01
         </p>
         <h2
-          className='text-[2.4rem] tracking-[0.18em] mb-4 leading-none'
+          className='text-[1.8rem] md:text-[2.4rem] tracking-[0.18em] mb-4 leading-none whitespace-nowrap'
           style={{
             fontFamily: 'var(--font-outfit), sans-serif',
             fontWeight: 100,

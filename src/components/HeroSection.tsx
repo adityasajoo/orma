@@ -3,19 +3,19 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <section className='relative w-full h-screen overflow-hidden'>
+    <section className='relative w-full h-[70vh] md:h-screen overflow-hidden'>
       <Image
         src='/images-final/landing.jpg'
         alt='OR•MA Studio — Collection 01: Residue 2026'
         fill
-        className='object-cover object-center'
+        className='object-cover object-right-top md:object-center'
         priority
         sizes='100vw'
       />
 
       <div className='absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none' />
 
-      <div className='absolute bottom-14 left-1/2 -translate-x-1/2 text-center text-white whitespace-nowrap'>
+      <div className='absolute bottom-14 left-1/2 -translate-x-1/2 text-center text-white px-6'>
         <p
           className='text-[10px] tracking-[0.4em] font-light mb-3 opacity-90'
           style={{
@@ -25,7 +25,7 @@ export default function HeroSection() {
           COLLECTION 01
         </p>
         <h1
-          className='text-[2.4rem] tracking-[0.18em] mb-4 leading-none'
+          className='text-[1.8rem] md:text-[2.4rem] tracking-[0.18em] mb-4 leading-none whitespace-nowrap'
           style={{
             fontFamily: 'var(--font-outfit), sans-serif',
             fontWeight: 100,

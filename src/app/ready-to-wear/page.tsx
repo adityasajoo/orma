@@ -13,7 +13,7 @@ export default function ReadyToWearPage() {
         <div className='px-8 mb-10'>
           <div className='relative w-full h-52 overflow-hidden'>
             <Image
-              src='/images/Untitled-18.png'
+              src='/images/latest/Untitled-18_2026-06-02_12_46_36.832554.webp'
               alt='Ready to Wear collection banner'
               fill
               className='object-cover object-top'

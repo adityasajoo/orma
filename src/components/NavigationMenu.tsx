@@ -162,9 +162,12 @@ export default function NavigationMenu({ isOpen, onClose }: Props) {
             <div className='flex flex-col gap-2 min-w-[180px] min-h-[12rem]'>
               {activeItem.subMenu && (
                 <>
-                  <span className='block text-[1.65rem] font-bold tracking-[0.06em] leading-tight text-black'>
+                  <Link
+                    href={activeItem.href}
+                    onClick={onClose}
+                    className='block text-[1.65rem] font-bold tracking-[0.06em] leading-tight text-black hover:opacity-70 transition-opacity duration-150'>
                     {activeItem.subMenu.heading}
-                  </span>
+                  </Link>
                   {activeItem.subMenu.links.map(link => (
                     <Link
                       key={link.label}

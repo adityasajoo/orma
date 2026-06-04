@@ -15,7 +15,7 @@ export const products: Product[] = [
   {
     id: 1,
     name: 'Double Collar Top',
-    price: 'INR 12,000',
+    price: 'INR 8,250',
     slug: 'double-collar-top',
     category: 'tops',
     mainImage: '/images-final/double collar top/8e64995d-a389-4130-9804-b0b79864445a Firefly Upscaler 4x scale.jpg',
@@ -31,7 +31,7 @@ export const products: Product[] = [
   {
     id: 2,
     name: 'Flared Pants',
-    price: 'INR 22,000',
+    price: 'INR 25,500',
     slug: 'flared-pant',
     category: 'pants',
     mainImage: '/images-final/flared pant/61ddadda-35ab-42fe-90b9-ae19ef0b7d66 Firefly Upscaler 4x scale.jpg',
@@ -49,7 +49,7 @@ export const products: Product[] = [
   {
     id: 3,
     name: 'Rift Skirt',
-    price: 'INR 18,000',
+    price: 'INR 21,000',
     slug: 'rift-skirt',
     category: 'skirts',
     mainImage: '/images-final/rift skirt/c79f388b-ad4a-497d-9ded-789c5ae61716 Firefly Upscaler 4x scale.jpg',
@@ -66,7 +66,7 @@ export const products: Product[] = [
   {
     id: 4,
     name: 'Rorschach Cropped Jacket',
-    price: 'INR 20,000',
+    price: 'INR 11,000',
     slug: 'rorschach-cropped-jacket',
     category: 'jackets',
     mainImage: '/images-final/rorschach cropped jacket/b02d49ee-d6f1-4f33-a29a-4fb85e0450ba Firefly Upscaler 4x scale.jpg',
@@ -82,7 +82,7 @@ export const products: Product[] = [
   {
     id: 5,
     name: 'Fragment Corset',
-    price: 'INR 25,000',
+    price: 'INR 17,500',
     slug: 'fragment-corset',
     category: 'tops',
     mainImage: '/images-final/fragment corset/yu.jpg',

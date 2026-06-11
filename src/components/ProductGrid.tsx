@@ -1,46 +1,45 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { client } from '@/lib/sanityClient';
+import { SanityProduct } from '@/types/sanity';
+import { urlFor } from '@/lib/image';
 
-const landingProducts = [
-  {
-    slug: 'fragment-corset',
-    image: '/images-final/fragment corset/yu.jpg',
-    name: 'Fragment Corset',
-  },
-  {
-    slug: 'rorschach-cropped-jacket',
-    image:
-      '/images-final/rorschach cropped jacket/b02d49ee-d6f1-4f33-a29a-4fb85e0450ba Firefly Upscaler 4x scale.jpg',
-    name: 'Rorschach Cropped Jacket',
-  },
-  {
-    slug: 'rift-skirt',
-    image:
-      '/images-final/rift skirt/c79f388b-ad4a-497d-9ded-789c5ae61716 Firefly Upscaler 4x scale.jpg',
-    name: 'Rift Skirt',
-  },
+const LANDING_SLUGS = [
+  'fragment-corset',
+  'rorschach-cropped-jacket',
+  'rift-skirt',
 ];
 
-export default function ProductGrid() {
+async function getLandingProducts(): Promise<SanityProduct[]> {
+  return client.fetch(`*[_type == "product" && slug.current in $slugs]`, {
+    slugs: LANDING_SLUGS,
+  });
+}
+
+export default async function ProductGrid() {
+  const rawProducts = await getLandingProducts();
+
+  // preserve the order defined in LANDING_SLUGS
+  const products = LANDING_SLUGS.map(slug =>
+    rawProducts.find(p => p.slug.current === slug),
+  ).filter(Boolean) as SanityProduct[];
+
   return (
     <section className='bg-white py-6 px-6'>
-      {/* Desktop: 3-column. Mobile: 2-up top, 1 centered bottom */}
       <div className='hidden md:grid md:grid-cols-3 gap-4'>
-        {landingProducts.map(product => (
-          <ProductLink key={product.slug} product={product} sizes='33vw' />
+        {products.map(product => (
+          <ProductLink key={product._id} product={product} sizes='33vw' />
         ))}
       </div>
 
       <div className='md:hidden flex flex-col gap-4'>
-        {/* Row 1: two side by side */}
         <div className='grid grid-cols-2 gap-4'>
-          <ProductLink product={landingProducts[0]} sizes='50vw' />
-          <ProductLink product={landingProducts[1]} sizes='50vw' />
+          <ProductLink product={products[0]} sizes='50vw' />
+          <ProductLink product={products[1]} sizes='50vw' />
         </div>
-        {/* Row 2: single centered at ~60% width */}
         <div className='flex justify-center'>
           <div className='w-[60%]'>
-            <ProductLink product={landingProducts[2]} sizes='60vw' />
+            <ProductLink product={products[2]} sizes='60vw' />
           </div>
         </div>
       </div>
@@ -52,14 +51,14 @@ function ProductLink({
   product,
   sizes,
 }: {
-  product: (typeof landingProducts)[number];
+  product: SanityProduct;
   sizes: string;
 }) {
   return (
-    <Link href={`/products/${product.slug}`} className='group block'>
+    <Link href={`/products/${product.slug.current}`} className='group block'>
       <div className='relative aspect-3/4 overflow-hidden'>
         <Image
-          src={product.image}
+          src={urlFor(product.mainImage)}
           alt={product.name}
           fill
           className='object-cover object-top transition-transform duration-500 group-hover:scale-105'

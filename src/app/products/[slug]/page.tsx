@@ -1,5 +1,5 @@
+import { getProduct } from '@/lib/api/getProduct';
 import { notFound } from 'next/navigation';
-import { products } from '@/data/products';
 import ProductDetail from './ProductDetail';
 
 export default async function ProductPage({
@@ -8,7 +8,8 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = products.find(p => p.slug === slug);
+  const product = await getProduct(slug);
   if (!product) notFound();
+
   return <ProductDetail product={product} />;
 }

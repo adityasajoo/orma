@@ -1,9 +1,11 @@
 import Navbar from '@/components/Navbar';
 import ProductCard from '@/components/ProductCard';
+import { getProducts } from '@/lib/api/getProducts';
 import Image from 'next/image';
-import { products } from '@/data/products';
 
-export default function ReadyToWearPage() {
+export default async function ReadyToWearPage() {
+  const products = await getProducts();
+
   return (
     <>
       <Navbar dark />
@@ -33,7 +35,7 @@ export default function ReadyToWearPage() {
         {/* Product grid */}
         <div className='px-4 md:px-8 grid grid-cols-2 md:grid-cols-3 gap-x-3 md:gap-x-5 gap-y-8 md:gap-y-12'>
           {products.map(product => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </main>

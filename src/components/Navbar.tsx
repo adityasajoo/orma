@@ -21,11 +21,15 @@ export default function Navbar({ dark = false }: NavbarProps) {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-10 pt-8 px-8 py-5 transition-opacity duration-300 ${
-          isMenuOpen || isSearchOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          isMenuOpen || isSearchOpen
+            ? 'opacity-0 pointer-events-none'
+            : 'opacity-100'
         }`}>
         <button
           aria-label='Open menu'
-          onClick={() => setIsMenuOpen(true)}
+          onClick={() => {
+            setIsMenuOpen(true);
+          }}
           className={`${iconColor} hover:opacity-50 transition-opacity`}>
           <Menu size={22} strokeWidth={1.2} />
         </button>

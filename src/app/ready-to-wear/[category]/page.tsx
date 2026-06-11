@@ -2,14 +2,24 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import ProductCard from '@/components/ProductCard';
 import Image from 'next/image';
-import { products, ProductCategory } from '@/data/products';
+import { client } from '@/lib/sanityClient';
+import { SanityProduct } from '@/types/sanity';
 
-const categoryLabels: Record<ProductCategory, string> = {
+const categoryLabels: Record<string, string> = {
   tops: 'TOPS',
   pants: 'PANTS',
   skirts: 'SKIRTS',
   jackets: 'JACKETS',
 };
+
+async function getProductsByCategory(
+  category: string,
+): Promise<SanityProduct[]> {
+  return client.fetch(
+    `*[_type == "product" && category == $category] | order(_updatedAt asc)`,
+    { category },
+  );
+}
 
 export default async function CategoryPage({
   params,
@@ -20,8 +30,7 @@ export default async function CategoryPage({
 
   if (!(category in categoryLabels)) notFound();
 
-  const cat = category as ProductCategory;
-  const filtered = products.filter(p => p.category === cat);
+  const filtered = await getProductsByCategory(category);
 
   return (
     <>
@@ -40,17 +49,17 @@ export default async function CategoryPage({
               sizes='100vw'
             />
           </div>
-        </div>{' '}
-        s{/* Section heading */}
+        </div>
+        {/* Section heading */}
         <p
           className='text-center text-[16px] tracking-[0.35em] text-black mb-10'
           style={{ fontFamily: 'var(--font-body)', padding: '10px' }}>
-          READY TO WEAR // {categoryLabels[cat]}
+          READY TO WEAR // {categoryLabels[category]}
         </p>
         {/* Product grid */}
         <div className='px-4 md:px-8 grid grid-cols-2 md:grid-cols-3 gap-x-3 md:gap-x-5 gap-y-8 md:gap-y-12'>
           {filtered.map(product => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </main>

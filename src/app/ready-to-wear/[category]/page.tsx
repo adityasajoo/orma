@@ -1,9 +1,8 @@
-import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import ProductCard from '@/components/ProductCard';
+import { getProductsByCategory } from '@/lib/api/getProductsByCategory';
 import Image from 'next/image';
-import { client } from '@/lib/sanityClient';
-import { SanityProduct } from '@/types/sanity';
+import { notFound } from 'next/navigation';
 
 const categoryLabels: Record<string, string> = {
   tops: 'TOPS',
@@ -11,15 +10,6 @@ const categoryLabels: Record<string, string> = {
   skirts: 'SKIRTS',
   jackets: 'JACKETS',
 };
-
-async function getProductsByCategory(
-  category: string,
-): Promise<SanityProduct[]> {
-  return client.fetch(
-    `*[_type == "product" && category == $category] | order(_updatedAt asc)`,
-    { category },
-  );
-}
 
 export default async function CategoryPage({
   params,

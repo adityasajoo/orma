@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import Navbar from '@/components/Navbar';
+import { urlFor } from '@/lib/image';
+import { SanityProduct } from '@/types/sanity';
 import Image from 'next/image';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import { Product } from '@/data/products';
-import { SanityProduct } from '@/types/sanity';
-import { urlFor } from '@/lib/image';
+import { useRef, useState } from 'react';
 
 const SIZES = ['XS', 'S', 'M', 'L', 'XL'];
 
